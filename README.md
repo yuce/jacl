@@ -1,11 +1,22 @@
 # Jacl Specification 0.1
 
-Jacl is a straightforward configuration language with the following aims:
+Jacl is a straightforward configuration language with the following features:
 
 * Indentation does NOT matter.
 * All values in the configuration have a non-ambiguous type.
 * Separators between values are optional.
 * NO cheap tricks.
+
+Goals:
+
+* The specification should be trivial to understand and easy to implement.
+* A configuration file should be easy to edit and easy to understand.
+* Trivial mistakes shouldn't change the *meaning* of the configuration file drastically.
+
+Non-goals:
+
+* Anything not necessary in a configuration file.
+
 
 ## Change Log
 
