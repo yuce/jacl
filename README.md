@@ -69,15 +69,21 @@ clients: {
 }
 ```
 
-### Base Specification
+## Base Specification
+
+### Grammar
+
+The Jacl grammar is written using [ANTLR4](https://www.antlr.org/index.html). You can find the grammar [here](Jacl.g4).
+
+### Definitions
 
 Host language: The programming language that implements this specification.
 
-#### Empty File
+### Empty File
 
 An empty file is a valid Jacl file.
 
-#### Comments
+### Comments
 
 Single line comments start with `#`:
 
@@ -90,13 +96,13 @@ Multiline comments start with `/*` and end with `*/`:
         comment
     */
 
-#### Properties
+### Properties
 
 Properties are defined at the top level of a file, and they have the following structure:
 
     [NAME][:] [VALUE]
 
-##### Property name
+#### Property name
 
 Property name is a string:
 
@@ -117,7 +123,7 @@ The name above is evaluated to `newest\nprefix`, NOT:
 
 The maximum length of a property name is 512 characters.
 
-##### Property value
+#### Property value
 
 Property value can be one of the following types:
 
@@ -129,7 +135,7 @@ Property value can be one of the following types:
 * array
 * map
 
-#### Strings
+### Strings
 
 A string is always quoted with `"`, `'''` or `"""`. Escapes in the former one are expanded, but not in the latter ones. Latter ones can span multiple lines.
 
@@ -158,7 +164,7 @@ Another multiline raw string:
     multiline
     string"""
 
-#### Integers
+### Integers
 
 Integers always have the biggest size the host language supports natively (usually 64 bits these days).
 
@@ -179,7 +185,7 @@ Otherwise, it is a signed integer. Signed integers may have `-` or `+` prefixes.
     +123
 ```
 
-#### Floats
+### Floats
 
 Floats always have the biggest size the host language supports natively (usually 64 bits these days).
 
@@ -187,11 +193,11 @@ A float should always have a decimal point; that's how floats are distinguished 
 
 `NaN` and `Infinity` are not supported in the base specification.
 
-#### Boolean
+### Boolean
 
 One of `true` or `false`.
 
-#### Array
+### Array
 
 An array may contain items of arbitrary types. Items in the array are written between brackets `[ ... ]`. Commas between items are optional.
 
@@ -214,7 +220,7 @@ which in turn is equivalent to:
         {name: "John", age: 30}
     ]
 
-#### Map
+### Map
 
 A map contains keys and their mapping values. The keys can only be strings and they have the same restrictions as a property name. Keys and values of a map are written between curly braces: `{ ... }`. A key and a value is separated by colons `:`. Commas are optional.
 
