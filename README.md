@@ -15,7 +15,7 @@ Jacl is a straightforward configuration language with the following aims:
 
 ## Sample
 
-```
+```json
 # This is a Jacl document. Boom.
 
 owner: {
