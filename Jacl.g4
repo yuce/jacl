@@ -124,9 +124,9 @@ CloseBrace: '}';
 OpenParen : '(';
 CloseParen: ')';
 
-BooleanLiteral   : 'true' | 'false';
+// Literals
 
-/// Numeric Literals
+BooleanLiteral   : 'true' | 'false';
 
 FloatLiteral
     : SignedIntegerLiteral '.' [0-9]+ ExponentPart?
@@ -134,19 +134,16 @@ FloatLiteral
     | SignedIntegerLiteral ExponentPart
     ;
 
-/// Numeric Literals
-
 SignedIntegerLiteral: [-+]? Integer;
 BinaryIntegerLiteral : '0' [b] [01]+;
 OctalIntegerLiteral  : '0' [o] [0-7]+;
 DecimalIntegerLiteral  : '0' [d] [0-7]+;
 HexIntegerLiteral    : '0' [x] HexDigit+;
 
-// String Literals
 StringLiteral   : '"' DoubleStringCharacter* '"';
 RawStringLiteral
-    : '\'\'\'' .*? '\'\'\''
-    | '"""' .*? '"""'
+    : Identifier? '\'\'\'' .*? '\'\'\''
+    | Identifier? '"""' .*? '"""'
     ;
 
 WhiteSpaces   : [\t\u000B\u000C\u0020\u00A0]+ -> channel(HIDDEN);
