@@ -49,6 +49,15 @@ database: {
     enabled: true
 }
 
+// Some code in the config, indentation does not matter:
+source: trim"""
+    def main():
+        if True:
+            print("OK, fine")
+        else:
+            print("Not fine")
+    """
+
     /*
         You can indent as you please, even if it doesn't make sense.
         Tabs or spaces. Jacl doesn't care.
@@ -293,7 +302,7 @@ Of course, a map can be many levels deep:
 
 #### trim
 
-Sets the column of the first non-space character of ther first non-empty line as the pin point. Removes empty lines at the beginning and at the end. Removes space characters from each line so the pin point of each line is the first column.
+Sets the column of the first non-space character of ther first non-empty line as the pin point. Removes empty lines at the beginning and at the end. Removes space characters from each line so the pin point is the first column.
 
 Example:
 
