@@ -44,12 +44,12 @@ owner: {
 
 database: {
     server: "192.168.1.1"
-    ports: [8001, 8001, 8002]
+    ports: [8001 8001 8002]
     connection_max: 5000
     enabled: true
 }
 
-// Some code in the config, indentation does not matter:
+// Some code in the config. Indentation matters only when it should:
 source: trim"""
     def main():
         if True:
@@ -77,7 +77,7 @@ source: trim"""
 clients: {
     data: [
         ["gamma", "delta"]
-        [1, 2]
+        [1 2]
     ]
 }
 ```
@@ -430,6 +430,26 @@ This is line2.
 """
 ```
 
+The pin must be the first non-space character in the text, otherwise an error is returned:
+
+```
+invalid_text: pin"""
+    Here, some text.
+    ^
+    Rest of the text.
+    """
+```
+
+It is an error to not have the pin:
+
+```
+invalid_text: pin"""
+    Here, some text.
+    Rest of the text.
+    """
+```
+
+`pin` preserves the space on empty lines in contrast with `trim` which removes them.
 
 ## License
 
