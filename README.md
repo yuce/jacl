@@ -5,7 +5,7 @@ Jacl is a straightforward configuration language with the following features:
 * Indentation does NOT matter.
 * All values in the configuration have a non-ambiguous type.
 * Separators between values are optional.
-* NO cheap tricks.
+* NO magic, NO cheap tricks.
 
 Goals:
 
@@ -20,6 +20,11 @@ Non-goals:
 
 ## Change Log
 
+### v0.1.2 (2019-06-26)
+
+* Single line comments starts with `//` instead of `#`.
+* Numbers may optionally include underscores to increase their readability, e.g., `12_345_678_900 == 12345678900`.
+
 ### v0.1.1 (2019-06-23)
 
 * Added extended specification.
@@ -31,7 +36,7 @@ Non-goals:
 ## Sample
 
 ```
-# This is a Jacl document. Boom.
+// This is a Jacl document. Boom.
 
 owner: {
     name: "Phillips Redd"
@@ -121,9 +126,9 @@ An empty file is a valid Jacl file.
 
 ### Comments
 
-Single line comments start with `#`:
+Single line comments start with `//`:
 
-    # This is a single line comment.
+    // This is a single line comment.
 
 Multiline comments start with `/*` and end with `*/`:
 
@@ -213,6 +218,13 @@ If a number has one of the following prefixes below, then it is an unsigned inte
 * `0d`: decimal, eg., `0d987123`.
 * `0x`. hexadecimal, e.g., `0xBEEF`.
 
+Underscore (`_`) is allowed between digits:
+
+* `0b1_0_1_0_1 == 0b10101`
+* `0d13_490_567 == 0d13490567`
+* `0o12_567 == 0o12567`
+* `0xAB_CD_EF12 == 0xABCDEF12`
+
 #### Signed integer
 
 Signed integers always have the biggest size the host language supports natively (usually 64 bits these days).
@@ -227,11 +239,15 @@ Signed integers may have the sign: `-` or `+`.
     +123
 ```
 
+Underscore (`_`) is allowed between digits: `12_345_678 == 12345678`.
+
 #### Float
 
 Floats always have the biggest size the host language supports natively (usually 64 bits these days).
 
 A float should always have a decimal point; that's how floats are distinguished from integers.
+
+Underscore (`_`) is allowed between digits: `12_345_678.910_405 == 12345678.910405`.
 
 `NaN` and `Infinity` are not supported in the base specification.
 

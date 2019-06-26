@@ -115,7 +115,7 @@ identifierName
     ;
 
 MultiLineComment : '/*' .*? '*/'            -> channel(HIDDEN);
-SingleLineComment: '#' ~[\r\n\u2028\u2029]* -> channel(HIDDEN);
+SingleLineComment: '//' ~[\r\n\u2028\u2029]* -> channel(HIDDEN);
 
 OpenBracket : '[';
 CloseBracket: ']';
@@ -129,16 +129,16 @@ CloseParen: ')';
 BooleanLiteral   : 'true' | 'false';
 
 FloatLiteral
-    : SignedIntegerLiteral '.' [0-9]+ ExponentPart?
-    | '.' [0-9]+ ExponentPart?
+    : SignedIntegerLiteral '.' [0-9_]+ ExponentPart?
+    | '.' [0-9_]+ ExponentPart?
     | SignedIntegerLiteral ExponentPart
     ;
 
 SignedIntegerLiteral: [-+]? Integer;
-BinaryIntegerLiteral : '0' [b] [01]+;
-OctalIntegerLiteral  : '0' [o] [0-7]+;
-DecimalIntegerLiteral  : '0' [d] [0-7]+;
-HexIntegerLiteral    : '0' [x] HexDigit+;
+BinaryIntegerLiteral : '0' [b] [01_] +;
+OctalIntegerLiteral  : '0' [o] [0-7_]+;
+DecimalIntegerLiteral  : '0' [d] Integer;
+HexIntegerLiteral    : '0' [x] [0-9a-fA-F_]+;
 
 StringLiteral   : '"' DoubleStringCharacter* '"';
 RawStringLiteral
@@ -195,9 +195,8 @@ fragment EscapeCharacter
 
 fragment Integer
     : '0'
-    | [1-9] [0-9]*
+    | [1-9_] [0-9_]*
     ;
-
 
 fragment HexDigit
     : [0-9a-fA-F]
