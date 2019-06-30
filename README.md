@@ -24,6 +24,7 @@ Non-goals:
 ### v0.1.3 (2019-06-30)
 
 * Added experimental specification.
+* Repeated keys are not allowed.
 
 ### v0.1.2 (2019-06-26)
 
@@ -186,7 +187,12 @@ The name above is evaluated to `newest\nprefix`, NOT:
     newest
     prefix
 
-The maximum length of a property name is 512 characters.
+Repeated property names are not allowed:
+
+    key: "foo"
+    key: "bar"
+
+The maximum length of a property name is 1024 characters.
 
 #### Property value
 
@@ -334,6 +340,13 @@ Of course, a map can be many levels deep:
                 write: false
             }
         }
+    }
+
+Repeated keys are not allowed:
+
+    {
+        key: "foo"
+        key: "bar"
     }
 
 ## Extended Specification
