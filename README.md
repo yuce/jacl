@@ -36,7 +36,7 @@ Non-goals:
 ## Sample
 
 ```
-// This is a Jacl document. Boom.
+// This is a Jacl file. Boom.
 
 owner: {
     name: "Phillips Redd"
@@ -49,8 +49,8 @@ owner: {
 
 database: {
     server: "192.168.1.1"
-    ports: [8001 8001 8002]
-    connection_max: 5000
+    ports: [8001 8002 8003]
+    connection_max: 5_000
     enabled: true
 }
 
@@ -168,13 +168,13 @@ The maximum length of a property name is 512 characters.
 
 Property value can be one of the following types:
 
-* string
-* signed integer
-* unsigned integer
-* float
-* boolean
-* array
-* map
+* [String](#string)
+* [Unsigned integer](#unsigned-integer)
+* [Signed integer](#signed-integer)
+* [Float](#float)
+* [Boolean](#boolean)
+* [Array](#array)
+* [Map](#map)
 
 ### Data Types
 
@@ -466,6 +466,11 @@ invalid_text: pin"""
 ```
 
 `pin` preserves the space on empty lines in contrast with `trim` which removes them.
+
+## Thanks
+
+* Alan Bernstein for the name of the language.
+* Matt Jaffee for early feedback.
 
 ## License
 

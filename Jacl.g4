@@ -210,6 +210,7 @@ fragment IdentifierPart
     | '\u200C'
     | '\u200D'
     | Integer
+    | '-'
     ;
 fragment IdentifierStart
     : UnicodeLetter
