@@ -187,7 +187,7 @@ The name above is evaluated to `newest\nprefix`, NOT:
     newest
     prefix
 
-Repeated property names are not allowed:
+Repeated property names are not allowed. The following is invalid:
 
     key: "foo"
     key: "bar"
@@ -342,7 +342,7 @@ Of course, a map can be many levels deep:
         }
     }
 
-Repeated keys are not allowed:
+Repeated keys are not allowed. The following is invalid:
 
     {
         key: "foo"
