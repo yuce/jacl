@@ -5,6 +5,7 @@ Jacl is a straightforward configuration language with the following features:
 * Indentation does NOT matter.
 * All values in the configuration have a non-ambiguous type.
 * Separators between values are optional.
+* Familiar syntax.
 * NO magic, NO cheap tricks.
 
 Goals:
@@ -20,9 +21,13 @@ Non-goals:
 
 ## Change Log
 
+### v0.1.3 (2019-06-30)
+
+* Added experimental specification.
+
 ### v0.1.2 (2019-06-26)
 
-* Single line comments starts with `//` instead of `#`.
+* Single line comments start with `//` instead of `#`.
 * Numbers may optionally include underscores to increase their readability, e.g., `12_345_678_900 == 12345678900`.
 
 ### v0.1.1 (2019-06-23)
@@ -87,6 +92,16 @@ clients: {
 }
 ```
 
+## Libraries
+
+Below are the libraries that implement Jacl:
+
+Library | Language | Basic Spec|Extended Spec|Experimental Spec| Home
+--------|----------|-----------|-------------|-----------------|-----
+go-jacl | Go       | Yes       |Yes          | -               | https://github.com/yuce/go-jacl
+---------------------------------------------------------------------
+
+
 ## Table Of Contents
 
 1. [Base Specification](#base-specification)
@@ -109,6 +124,13 @@ clients: {
     1. [Raw String Functions](#raw-string-functions)
         1. [trim](#trim)
         2. [pin](#pin)
+3. [Experimental Specification](#experimental-specification)
+    1. [Additional Data Types](#additional-data-types)
+        1. [complex](#complex)
+        2. [date](#date)
+        3. [datetime](#datetime)
+        4. [null](#null)
+        5. [time](#time)
 
 ## Base Specification
 
@@ -141,13 +163,15 @@ Multiline comments start with `/*` and end with `*/`:
 
 Properties are defined at the top level of a file, and they have the following structure:
 
-    [NAME][:] [VALUE]
+    [name]: [value]
 
 #### Property name
 
-Property name is a string:
+Property name is a string which contains alphanumneric characters, `-` or `_`:
 
-    prefix: "fun-"
+    key: "fun"
+    another-key: "other-fun"
+    yet_another_fun: "yet another fun"
 
 Optionally with quotes (`"`) around it:
 
@@ -466,6 +490,49 @@ invalid_text: pin"""
 ```
 
 `pin` preserves the space on empty lines in contrast with `trim` which removes them.
+
+## Experimental Specification
+
+### Additional Data Types
+
+Jacl's base specification is minimal but supports many of the data types required by a configuration system. Nevertheless, there are other data types which can be useful in some situations, such as a date, complex number, etc.
+
+Jacl supports additional data types via a syntax similar to a function call:
+
+    [name]( [parameter 1], [parameter 2] ... )
+
+#### complex
+
+A complex number: `complex(REAL, IMAGINERY)`
+
+    // corresponds to: 3+4i
+    a1: complex(3, 4)
+
+#### date
+
+A date given in the `[year]-[month]-[day]` format:
+
+    birthdate: date("2019-06-13")
+
+#### datetime
+
+A timestamp containg both the date and time in the `[year]-[month]-[day]T[24-hour]:[minute]:[second]Z[timezone]` format. `[timezone]` is optional:
+
+    with-timezone: datetime("2019-06-13T22:47:31Z03:00")
+    without-timezone: datetime("2019-06-13T22:47:31Z")
+
+#### null
+
+Just the null value:
+
+    owner: null()
+
+#### time
+
+A time given in the `[24-hour]:[minute]:[second]` format:
+
+    next_time: time("13:34:45")
+
 
 ## Thanks
 
