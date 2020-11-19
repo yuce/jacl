@@ -21,6 +21,10 @@ Non-goals:
 
 ## Change Log
 
+### v0.2.0
+
+* Added experimental map shortcut
+
 ### v0.1.3 (2019-06-30)
 
 * Added experimental specification.
@@ -205,6 +209,25 @@ Property value can be one of the following types:
 * [Boolean](#boolean)
 * [Array](#array)
 * [Map](#map)
+
+#### Map shortcut
+
+The following property key-value pair:
+
+    {
+        key > subkey > subsubkey: "subsubkeyvalue"
+    }
+    
+Corresponds to:
+
+    {
+        key: {
+            subkey: {
+                subsubkey: "subsubkeyvalue"
+            }
+        }
+    }
+
 
 ### Data Types
 
